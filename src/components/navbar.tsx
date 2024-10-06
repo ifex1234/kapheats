@@ -1,15 +1,17 @@
+"use client";
 import "../styles/navBar.scss";
 import React from "react";
 import { MenuRounded } from "@mui/icons-material";
 import { MenuOpen } from "@mui/icons-material";
 import images from "../constant/images";
+import Image from "next/image";
 
 export default function NavBar() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   return (
     <div className="app__navbar">
       <div className="app__navbar-logo">
-        <img src={images.gericht} alt="app__logo" />
+        <Image src={images.gericht} alt="app__logo" />
       </div>
       <ul className="app__navbar-links">
         <li className="p__opensans">
@@ -40,7 +42,7 @@ export default function NavBar() {
       </div>
 
       <div className="app__navbar-smallscreen">
-        <MenuRounded color="#fff" onClick={() => setToggleMenu(true)} />
+        <MenuRounded color="info" onClick={() => setToggleMenu(true)} />
         {toggleMenu && (
           <div className="app__navbar-smallscreen_overlay flex__center slide-bottom">
             <MenuOpen

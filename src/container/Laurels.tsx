@@ -1,14 +1,23 @@
-import React from 'react';
+import React from "react";
+import { images } from "../constant";
+import "../styles/Laurels.scss";
+import SubHeading from "@/components/subheading";
+import Image, { StaticImageData } from "next/image";
+import { awards } from "@/constant/data";
 
-import SubHeading  from '../components/subHeading';
-import { images, data } from '../constant';
-import '../styles/Laurels.scss'; 
-
-const AwardCard = ({ award: { imgUrl, title, subtitle } }) => (
+type props = {
+  imgUrl: StaticImageData;
+  title: string;
+  subtitle: string;
+};
+type AwardProp = {
+  award: props;
+};
+const AwardCard = ({ award: { imgUrl, title, subtitle } }: AwardProp) => (
   <div className="app__laurels_awards-card">
-    <img src={imgUrl} alt="awards" />
+    <Image src={imgUrl} alt="awards" />
     <div className="app__laurels_awards-card_content">
-      <p className="p__cormorant" style={{ color: '#DCCA87' }}>{title}</p>
+      <p className="p__cormorant text-[#DCCA87]">{title}</p>
       <p className="p__opensans">{subtitle}</p>
     </div>
   </div>
@@ -21,12 +30,14 @@ const Laurels = () => (
       <h1 className="headtext__cormorant">Our Laurels</h1>
 
       <div className="app__laurels_awards">
-        {data.awards.map((award) => <AwardCard award={award} key={award.title} />)}
+        {awards.map((award) => (
+          <AwardCard award={award} key={award.title} />
+        ))}
       </div>
     </div>
 
     <div className="app__wrapper_img">
-      <img src={images.laurels} alt="laurels_img" />
+      <Image src={images.laurels} alt="laurels_img" />
     </div>
   </div>
 );

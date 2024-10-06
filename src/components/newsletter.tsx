@@ -1,5 +1,5 @@
-import SubHeading from "../components/subHeading";
 import "../styles/Newsletter.scss";
+import SubHeading from "./subheading";
 
 const Newsletter = () => (
   <div className="app__newsletter">

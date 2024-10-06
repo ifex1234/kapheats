@@ -1,9 +1,9 @@
 import images from "../constant/images";
-
-const SubHeading = ({ title }) => (
-  <div style={{ marginBottom: "1rem" }}>
+import Image from "next/image";
+const SubHeading = ({ title }: { title: string }) => (
+  <div className=" mb-4">
     <p className="p__cormorant">{title}</p>
-    <img src={images.spoon} alt="spoon_image" className="spoon__img" />
+    <Image src={images.spoon} alt="spoon_image" className="spoon__img" />
   </div>
 );
 

@@ -1,14 +1,15 @@
 import React from "react";
-
 import "../styles/MenuItem.scss";
-
-const MenuItem = ({ title, price, tags }) => (
+type Props = {
+  title: string;
+  price: string;
+  tags: string;
+};
+const MenuItems = ({ title, price, tags }: Props) => (
   <div className="app__menuitem">
     <div className="app__menuitem-head">
       <div className="app__menuitem-name">
-        <p className="p__cormorant" style={{ color: "#DCCA87" }}>
-          {title}
-        </p>
+        <p className="p__cormorant text-[#DCCA87]">{title}</p>
       </div>
       <div className="app__menuitem-dash" />
       <div className="app__menuitem-price">
@@ -17,11 +18,9 @@ const MenuItem = ({ title, price, tags }) => (
     </div>
 
     <div className="app__menuitem-sub">
-      <p className="p__opensans" style={{ color: "#AAAAAA" }}>
-        {tags}
-      </p>
+      <p className="p__opensans text-[#AAAAAA]">{tags}</p>
     </div>
   </div>
 );
 
-export default MenuItem;
+export default MenuItems;

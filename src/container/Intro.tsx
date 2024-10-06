@@ -1,9 +1,13 @@
-import React from 'react';
+"use client";
+import React from "react";
 // import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs';
-import { PlayArrowOutlined, PauseCircleFilledRounded } from '@mui/icons-material';
+// import {
+//   PlayArrowOutlined,
+//   PauseCircleFilledRounded,
+// } from "@mui/icons-material";
 
-import meal from '../assets/meal.mp4';
-import '../styles/Intro.scss';
+//import meal from '../assets/';
+import "../styles/Intro.scss";
 
 const Intro = () => {
   const [playVideo, setPlayVideo] = React.useState(false);
@@ -11,16 +15,16 @@ const Intro = () => {
 
   return (
     <div className="app__video">
-      <video
+      {/* <video
         ref={vidRef}
         src={meal}
         type="video/mp4"
         loop
         controls={false}
         
-      />
+      /> */}
       <div className="app__video-overlay flex__center">
-        <div
+        {/* <div
           className="app__video-overlay_circle flex__center"
           onClick={() => {
             setPlayVideo(!playVideo);
@@ -36,7 +40,7 @@ const Intro = () => {
           ) : (
             <PlayArrowOutlined  />
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

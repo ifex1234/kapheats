@@ -1,9 +1,9 @@
-
-
-import MenuItem from '../components/MenuItem';
-import SubHeading from '../components/subHeading';
-import { data, images } from '../constant';
-import '../styles/SpecialMenu.scss';
+import SubHeading from "@/components/subheading";
+import { images } from "../constant";
+import "../styles/SpecialMenu.scss";
+import Image from "next/image";
+import { cocktails, wines } from "@/constant/data";
+import MenuItems from "@/components/menuItems";
 
 const SpecialMenu = () => (
   <div className="app__specialMenu flex__center section__padding" id="menu">
@@ -16,28 +16,40 @@ const SpecialMenu = () => (
       <div className="app__specialMenu-menu_wine  flex__center">
         <p className="app__specialMenu-menu_heading">Wine & Beer</p>
         <div className="app__specialMenu_menu_items">
-          {data.wines.map((wine, index) => (
-            <MenuItem key={wine.title + index} title={wine.title} price={wine.price} tags={wine.tags} />
+          {wines.map((wine) => (
+            <MenuItems
+              key={wine.id}
+              title={wine.title}
+              price={wine.price}
+              tags={wine.tags}
+            />
           ))}
         </div>
       </div>
 
       <div className="app__specialMenu-menu_img">
-        <img src={images.menu} alt="menu__img" />
+        <Image src={images.menu} alt="menu__img" />
       </div>
 
       <div className="app__specialMenu-menu_cocktails  flex__center">
         <p className="app__specialMenu-menu_heading">Cocktails</p>
         <div className="app__specialMenu_menu_items">
-          {data.cocktails.map((cocktail, index) => (
-            <MenuItem key={cocktail.title + index} title={cocktail.title} price={cocktail.price} tags={cocktail.tags} />
+          {cocktails.map((cocktail) => (
+            <MenuItems
+              key={cocktail.id}
+              title={cocktail.title}
+              price={cocktail.price}
+              tags={cocktail.tags}
+            />
           ))}
         </div>
       </div>
     </div>
 
-    <div style={{ marginTop: 15 }}>
-      <button type="button" className="custom__button">View More</button>
+    <div className=" mt-4">
+      <button type="button" className="custom__button">
+        View More
+      </button>
     </div>
   </div>
 );
