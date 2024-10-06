@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mui/icons-material": "^6.1.2",
     "@prisma/client": "^5.20.0",
     "@vercel/blob": "^0.24.1",
     "next": "14.2.14",

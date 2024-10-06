@@ -10,8 +10,29 @@ datasource db {
  
 model User {
   id        Int      @id @default(autoincrement())
-  name      String
+  firstName      String
+  lastName String
   email     String   @unique
   image     String
+  password String
   createdAt DateTime @default(now())
+}
+model Meals{
+  id Int @id @default(autoincrement())
+  imageUrl String
+  title String
+  category String
+  price Int
+}
+model Corktail{
+  id Int @id @default(autoincrement())
+  title String
+  category String
+  price Int
+}
+model Beer{
+  id Int @id @default(autoincrement())
+  title String
+  category String
+  price Int
 }
