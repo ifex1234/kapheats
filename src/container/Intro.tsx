@@ -1,10 +1,9 @@
 "use client";
 import React from "react";
-import { BsFillPlayFill, BsPauseFill } from "react-icons/bs";
 import {
-  PlayArrowOutlined,
-  PauseCircleFilledRounded,
-} from "@mui/icons-material";
+  BsFillPlayFill as PlayArrowOutlined,
+  BsPauseFill as PauseCircleFilledRounded,
+} from "react-icons/bs";
 
 import "../styles/Intro.scss";
 

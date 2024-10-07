@@ -1,7 +1,10 @@
 "use client";
 import React from "react";
-//import { BsInstagram, BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
-import { Instagram, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import {
+  BsInstagram as Instagram,
+  BsArrowLeftShort as ArrowBackIos,
+  BsArrowRightShort as ArrowForwardIos,
+} from "react-icons/bs";
 import images from "../constant/images";
 import "../styles/Gallery.scss";
 import SubHeading from "@/components/subheading";
