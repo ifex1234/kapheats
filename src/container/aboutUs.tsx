@@ -1,7 +1,7 @@
 import Image from "next/image";
-
 import images from "../constant/images";
 import "../styles/AboutUs.scss";
+import Link from "next/link";
 
 const AboutUs = () => (
   <div
@@ -21,9 +21,9 @@ const AboutUs = () => (
           adipiscing ultrices vulputate posuere tristique. In sed odio nec
           aliquet eu proin mauris et.
         </p>
-        <button type="button" className="custom__button">
+        <Link className="custom__button" href="/about">
           Know More
-        </button>
+        </Link>
       </div>
 
       <div className="app__aboutus-content_knife flex__center">
@@ -38,12 +38,11 @@ const AboutUs = () => (
           Risus placerat morbi volutpat habitasse interdum mi aliquam In sed
           odio nec aliquet.
         </p>
-        <button type="button" className="custom__button">
+        <Link className="custom__button" href="/about">
           Know More
-        </button>
+        </Link>
       </div>
     </div>
   </div>
 );
-
 export default AboutUs;

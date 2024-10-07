@@ -1,48 +1,46 @@
 "use client";
 import "../styles/navBar.scss";
 import React from "react";
-import { MenuRounded } from "@mui/icons-material";
-import { MenuOpen } from "@mui/icons-material";
 import images from "../constant/images";
 import Image from "next/image";
-
+import Link from "next/link";
+import {
+  MdOutlineDensityMedium as MenuRounded,
+  MdMenuOpen as MenuOpen,
+} from "react-icons/md";
 export default function NavBar() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   return (
     <div className="app__navbar">
       <div className="app__navbar-logo">
-        <Image src={images.gericht} alt="app__logo" />
+        <Link href="/">
+          <Image src={images.gericht} alt="app__logo" />
+        </Link>
       </div>
       <ul className="app__navbar-links">
         <li className="p__opensans">
-          <a href="#home">Home</a>
+          <Link href="/about">About</Link>
         </li>
         <li className="p__opensans">
-          <a href="#about">About</a>
+          <Link href="/menu">Menu</Link>
         </li>
         <li className="p__opensans">
-          <a href="#menu">Menu</a>
-        </li>
-        <li className="p__opensans">
-          <a href="#awards">Awards</a>
-        </li>
-        <li className="p__opensans">
-          <a href="#contact">Contact</a>
+          <Link href="/contact">Contact</Link>
         </li>
       </ul>
 
       <div className="app__navbar-login">
         <a href="#login" className="p__opensans">
-          Log In / Registration
+          Log In
         </a>
         <div />
-        <a href="/" className="p__opensans">
+        <Link href="/booking" className="p__opensans">
           Book Table
-        </a>
+        </Link>
       </div>
 
       <div className="app__navbar-smallscreen">
-        <MenuRounded color="info" onClick={() => setToggleMenu(true)} />
+        <MenuRounded color="#ac9513" onClick={() => setToggleMenu(true)} />
         {toggleMenu && (
           <div className="app__navbar-smallscreen_overlay flex__center slide-bottom">
             <MenuOpen
@@ -51,29 +49,25 @@ export default function NavBar() {
             />
             <ul className="app__navbar-smallscreen_links">
               <li>
-                <a href="#home" onClick={() => setToggleMenu(false)}>
+                <Link href="/home" onClick={() => setToggleMenu(false)}>
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" onClick={() => setToggleMenu(false)}>
+                <Link href="/about" onClick={() => setToggleMenu(false)}>
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#menu" onClick={() => setToggleMenu(false)}>
+                <Link href="/menu" onClick={() => setToggleMenu(false)}>
                   Menu
-                </a>
+                </Link>
               </li>
+
               <li>
-                <a href="#awards" onClick={() => setToggleMenu(false)}>
-                  Awards
-                </a>
-              </li>
-              <li>
-                <a href="#contact" onClick={() => setToggleMenu(false)}>
+                <Link href="/contact" onClick={() => setToggleMenu(false)}>
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

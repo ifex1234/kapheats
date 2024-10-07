@@ -6,7 +6,7 @@ import FindUs from "@/container/FindUs";
 import Footer from "@/container/Footer";
 import Gallery from "@/container/Gallery";
 import Header from "@/container/header";
-//import Intro from "@/container/Intro";
+import Intro from "@/container/Intro";
 import Laurels from "@/container/Laurels";
 import SpecialMenu from "@/container/SpecialMenu";
 
@@ -18,7 +18,7 @@ export default function Home() {
       <AboutUs />
       <SpecialMenu />
       <Chef />
-      {/* <Intro /> */}
+      <Intro />
       <Laurels />
       <Gallery />
       <FindUs />

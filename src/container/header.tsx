@@ -2,6 +2,7 @@ import SubHeading from "@/components/subheading";
 import images from "../constant/images";
 import "../styles/header.scss";
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => (
   <div className="app__header app__wrapper section__padding" id="home">
@@ -9,13 +10,12 @@ const Header = () => (
       <SubHeading title="Chase the new flavour" />
       <h1 className="app__header-h1">The Key To Fine Dining</h1>
       <p className="p__opensans m-8">
-        Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat
-        morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet
-        tellus{" "}
+        Delicious finger linking meals that you can always count on.
+        Customers&apos;s satisfaction is our utmost priority
       </p>
-      <button type="button" className="custom__button">
+      <Link className="custom__button" href="/menu">
         Explore Menu
-      </button>
+      </Link>
     </div>
 
     <div className="app__wrapper_img">

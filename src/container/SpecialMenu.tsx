@@ -45,12 +45,6 @@ const SpecialMenu = () => (
         </div>
       </div>
     </div>
-
-    <div className=" mt-4">
-      <button type="button" className="custom__button">
-        View More
-      </button>
-    </div>
   </div>
 );
 

@@ -36,3 +36,25 @@ model Beer{
   category String
   price Int
 }
+model reservation{
+  id Int @id @unique @default(autoincrement())
+  date DateTime
+  time DateTime
+  numberOfPersons Int
+  purpose String?
+  name String
+  userId String
+  meal Meal
+}
+enum Meal{
+  fried_rice
+  jollof_rice
+  Egusi
+  Afang
+  Edikiakong
+  Banga
+  Bitter_leaf
+  Efo
+  Ewedu
+  Ogbono
+}
