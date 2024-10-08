@@ -1,6 +1,6 @@
 import bg from "../assets/bg.png";
 import chef from "../assets/chef.png";
-import G from "../assets/G.png";
+import G from "../assets/R.png";
 import gallery01 from "../assets/gallery01.png";
 import gallery02 from "../assets/gallery02.png";
 import gallery03 from "../assets/gallery03.png";
