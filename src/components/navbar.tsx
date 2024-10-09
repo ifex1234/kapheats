@@ -2,22 +2,17 @@
 import "../styles/navBar.scss";
 import React from "react";
 import Link from "next/link";
-//import localFont from "next/font/local";
 import {
   MdOutlineDensityMedium as MenuRounded,
   MdMenuOpen as MenuOpen,
 } from "react-icons/md";
 import { SignIn, UserButton } from "@stackframe/stack";
 export default function NavBar() {
-  // const satisfy = localFont({
-  //   src: "./fonts/satisfy-regular",
-  //   weight: "100 900",
-  // });
   const [toggleMenu, setToggleMenu] = React.useState(false);
   return (
     <div className="app__navbar">
       <div className="app__navbar-logo">
-        <Link className="text-white text-3xl" href="/">
+        <Link className={`text-white text-3xl `} href="/">
           Kapheats
         </Link>
       </div>
