@@ -35,6 +35,13 @@ export default function RootLayout({
           <StackTheme>
             {/* <NavBar /> */}
             {children}
+            {/* <Toaster
+              position="bottom-right"
+              toastOptions={{
+                style: { backgroundColor: "purple", color: "white" },
+              }}
+              theme="system"
+            /> */}
           </StackTheme>
         </StackProvider>
       </body>

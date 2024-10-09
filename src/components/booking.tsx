@@ -1,4 +1,5 @@
 "use client";
+//import { useUser } from "@stackframe/stack";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
@@ -18,7 +19,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
-  Form,
+  Form as MyForm,
   FormControl,
   FormDescription,
   FormField,
@@ -31,8 +32,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { toast } from "@/hooks/use-toast";
+//import { toast } from "@/hooks/use-toast";
 import { Input } from "./ui/input";
+import { useFormState, useFormStatus } from "react-dom";
+import { BookTable } from "./actions";
 
 const Meal = z.enum([
   "fried_rice",
@@ -56,52 +59,73 @@ const meals = [
   { label: "Ogbono", value: "Ogbono" },
   { label: "Ewedu", value: "Ewedu" },
 ] as const;
+const noPersons = [
+  { label: "1", value: "1" },
+  { label: "2", value: "2" },
+  { label: "3", value: "3" },
+  { label: "4", value: "4" },
+  { label: "5", value: "5" },
+  { label: "6", value: "6" },
+] as const;
 
 const FormSchema = z.object({
   dob: z.date({
     required_error: "A reservation is required.",
   }),
-  time: z.date(),
-  numberOfPersons: z.number(),
+  numberOfPersons: z.string(),
   purpose: z.string(),
   userId: z.string(),
   meal: Meal,
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
+  name: z.string().min(5, {
+    message: "Name must be at least 5 characters.",
   }),
 });
+const initialState = {
+  name: "",
+  numberOfPersons: "",
+  purpose: "",
+  userId: "",
+};
 
 export function ReservationForm() {
+  // const user = useUser({ or: "redirect" });
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       name: "",
+      numberOfPersons: "",
+      purpose: "",
+      userId: "",
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+  const [state, formAction] = useFormState(BookTable, initialState);
+  const { pending } = useFormStatus();
+
+  // function onSubmit(data: z.infer<typeof FormSchema>) {
+  //   console.log(data);
+  //   toast({
+  //     title: "You submitted the following values:",
+  //     description: (
+  //       <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+  //         <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+  //       </pre>
+  //     ),
+  //   });
+  // }
 
   return (
     <div className="form__bg ">
+      {/* <p className="text-white text-center pt-6">Hi, {user.displayName}</p>; */}
       <h1 className=" text-center font-normal text-3xl text-white py-5">
         Make Reservation
       </h1>
-
       <div className="form__content">
         <div className=" w-1/3 hidden md:block" />
-        <Form {...form}>
+        <MyForm {...form}>
           <form
-            onSubmit={form.handleSubmit(onSubmit)}
+            //onSubmit={form.handleSubmit(onSubmit)}
+            action={formAction}
             className="space-y-8 w-full md:w-1/3"
           >
             <FormField
@@ -132,6 +156,70 @@ export function ReservationForm() {
                   <FormDescription>
                     Reason/purpose of reservation
                   </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="numberOfPersons"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel className=" text-white">Table for:</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant="outline"
+                          role="combobox"
+                          className={cn(
+                            "w-[200px] justify-between",
+                            !field.value && "text-muted-foreground"
+                          )}
+                        >
+                          {field.value
+                            ? noPersons.find(
+                                (person) => person.value === field.value
+                              )?.label
+                            : "Select number of persons"}
+                          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[200px] p-0">
+                      <Command>
+                        <CommandInput placeholder="Search number of persons..." />
+                        <CommandList>
+                          <CommandEmpty>Not found.</CommandEmpty>
+                          <CommandGroup>
+                            {noPersons.map((person) => (
+                              <CommandItem
+                                value={person.label}
+                                key={person.value}
+                                onSelect={() => {
+                                  form.setValue(
+                                    "numberOfPersons",
+                                    person.value
+                                  );
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    person.value === field.value
+                                      ? "opacity-100"
+                                      : "opacity-0"
+                                  )}
+                                />
+                                {person.label}
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
+                        </CommandList>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+                  <FormDescription>Number of persons</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -240,9 +328,12 @@ export function ReservationForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <p aria-live="polite">{state.userId}</p>
+            <Button disabled={pending} type="submit">
+              {pending ? "Submitting..." : "Submit"}
+            </Button>
           </form>
-        </Form>
+        </MyForm>
         <div className=" w-1/3 hidden md:block" />
       </div>
     </div>
