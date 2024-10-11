@@ -31,10 +31,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-//import { toast } from "@/hooks/use-toast";
 import { Input } from "./ui/input";
 // import { useFormState, useFormStatus } from "react-dom";
-// import { BookTable, Submit } from "./actions";
 
 const Meal = z.enum([
   "fried_rice",
@@ -79,13 +77,6 @@ const FormSchema = z.object({
     message: "Name must be at least 5 characters.",
   }),
 });
-// const initialState = {
-//   name: "",
-//   numberOfPersons: "",
-//   purpose: "",
-//   userId: "",
-//   meals: "",
-// };
 
 export function ReservationForm() {
   const user = useUser({ or: "redirect" });
@@ -100,21 +91,7 @@ export function ReservationForm() {
     },
   });
 
-  // const [state, formAction] = useFormState(BookTable, initialState);
   // const { pending } = useFormStatus();
-
-  // function onSubmit(data: z.infer<typeof FormSchema>) {
-  //   console.log(data);
-  //   toast({
-  //     title: "You submitted the following values:",
-  //     description: (
-  //       <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-  //         <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-  //       </pre>
-  //     ),
-  //   });
-  // }
-
   return (
     <div className="form__bg ">
       <p className="text-white text-center pt-6">Hi, {user.displayName}</p>;
@@ -126,7 +103,6 @@ export function ReservationForm() {
         <MyForm {...form}>
           <form
             //onSubmit={form.handleSubmit(onSubmit)}
-            // action={Submit}
             className="space-y-8 w-full md:w-1/3"
           >
             <FormField
