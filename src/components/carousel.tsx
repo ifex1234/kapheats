@@ -8,6 +8,7 @@ export default function Carousel() {
   return (
     <div className="m-0 ">
       <ul>
+        <li>hello</li>
         <li>
           <Image src={img1} alt="" />
         </li>
