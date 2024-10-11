@@ -1,10 +1,10 @@
-import { ReservationForm } from "@/components/booking";
+import { ContactForm } from "@/components/contact";
 import React from "react";
 
 function page() {
   return (
     <div>
-      <ReservationForm />
+      <ContactForm />
     </div>
   );
 }

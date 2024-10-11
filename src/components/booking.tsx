@@ -1,6 +1,5 @@
 "use client";
-//import { useUser } from "@stackframe/stack";
-
+import { useUser } from "@stackframe/stack";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -34,8 +33,8 @@ import {
 } from "@/components/ui/popover";
 //import { toast } from "@/hooks/use-toast";
 import { Input } from "./ui/input";
-import { useFormState, useFormStatus } from "react-dom";
-import { BookTable } from "./actions";
+// import { useFormState, useFormStatus } from "react-dom";
+// import { BookTable, Submit } from "./actions";
 
 const Meal = z.enum([
   "fried_rice",
@@ -70,7 +69,7 @@ const noPersons = [
 
 const FormSchema = z.object({
   dob: z.date({
-    required_error: "A reservation is required.",
+    required_error: "A reservation date is required.",
   }),
   numberOfPersons: z.string(),
   purpose: z.string(),
@@ -80,15 +79,16 @@ const FormSchema = z.object({
     message: "Name must be at least 5 characters.",
   }),
 });
-const initialState = {
-  name: "",
-  numberOfPersons: "",
-  purpose: "",
-  userId: "",
-};
+// const initialState = {
+//   name: "",
+//   numberOfPersons: "",
+//   purpose: "",
+//   userId: "",
+//   meals: "",
+// };
 
 export function ReservationForm() {
-  // const user = useUser({ or: "redirect" });
+  const user = useUser({ or: "redirect" });
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -96,11 +96,12 @@ export function ReservationForm() {
       numberOfPersons: "",
       purpose: "",
       userId: "",
+      meal: "Afang",
     },
   });
 
-  const [state, formAction] = useFormState(BookTable, initialState);
-  const { pending } = useFormStatus();
+  // const [state, formAction] = useFormState(BookTable, initialState);
+  // const { pending } = useFormStatus();
 
   // function onSubmit(data: z.infer<typeof FormSchema>) {
   //   console.log(data);
@@ -116,7 +117,7 @@ export function ReservationForm() {
 
   return (
     <div className="form__bg ">
-      {/* <p className="text-white text-center pt-6">Hi, {user.displayName}</p>; */}
+      <p className="text-white text-center pt-6">Hi, {user.displayName}</p>;
       <h1 className=" text-center font-normal text-3xl text-white py-5">
         Make Reservation
       </h1>
@@ -125,7 +126,7 @@ export function ReservationForm() {
         <MyForm {...form}>
           <form
             //onSubmit={form.handleSubmit(onSubmit)}
-            action={formAction}
+            // action={Submit}
             className="space-y-8 w-full md:w-1/3"
           >
             <FormField
@@ -328,10 +329,10 @@ export function ReservationForm() {
                 </FormItem>
               )}
             />
-            <p aria-live="polite">{state.userId}</p>
+            {/* <p aria-live="polite">{state.userId}</p>
             <Button disabled={pending} type="submit">
               {pending ? "Submitting..." : "Submit"}
-            </Button>
+            </Button> */}
           </form>
         </MyForm>
         <div className=" w-1/3 hidden md:block" />

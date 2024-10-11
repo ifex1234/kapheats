@@ -1,5 +1,4 @@
 import "./globals.css";
-import NavBar from "@/components/navbar";
 import AboutUs from "@/container/aboutUs";
 import Chef from "@/container/Chef";
 import FindUs from "@/container/FindUs";
@@ -13,7 +12,6 @@ import SpecialMenu from "@/container/SpecialMenu";
 export default function Home() {
   return (
     <>
-      <NavBar />
       <Header />
       <AboutUs />
       <SpecialMenu />

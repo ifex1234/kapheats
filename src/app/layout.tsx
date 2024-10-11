@@ -3,7 +3,10 @@ import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackServerApp } from "../stack";
 import localFont from "next/font/local";
 import "./globals.css";
-//import NavBar from "@/components/navbar";
+import { Toaster } from "sonner";
+import NavBar from "@/components/navbar";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,15 +36,17 @@ export default function RootLayout({
       >
         <StackProvider app={stackServerApp}>
           <StackTheme>
-            {/* <NavBar /> */}
-            {children}
-            {/* <Toaster
+            <Suspense fallback={<Loading />}>
+              <NavBar />
+              {children}
+            </Suspense>
+            <Toaster
               position="bottom-right"
               toastOptions={{
                 style: { backgroundColor: "purple", color: "white" },
               }}
               theme="system"
-            /> */}
+            />
           </StackTheme>
         </StackProvider>
       </body>

@@ -38,9 +38,8 @@ model Beer{
 }
 model reservation{
   id Int @id @unique @default(autoincrement())
-  date DateTime
-  time DateTime
-  numberOfPersons Int
+  date DateTime @default(now())
+  numberOfPersons String
   purpose String?
   name String
   userId String

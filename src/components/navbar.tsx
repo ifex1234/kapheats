@@ -6,9 +6,11 @@ import {
   MdOutlineDensityMedium as MenuRounded,
   MdMenuOpen as MenuOpen,
 } from "react-icons/md";
-import { SignIn, UserButton } from "@stackframe/stack";
+import { UserButton } from "@stackframe/stack";
+
 export default function NavBar() {
   const [toggleMenu, setToggleMenu] = React.useState(false);
+
   return (
     <div className="app__navbar">
       <div className="app__navbar-logo">
@@ -29,8 +31,7 @@ export default function NavBar() {
       </ul>
 
       <div className="app__navbar-login">
-        <span className="p__opensans">
-          <SignIn />
+        <span className="p__opensans mt-3">
           <UserButton />
         </span>
 
