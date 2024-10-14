@@ -28,10 +28,14 @@ export default function NavBar() {
         <li className="p__opensans">
           <Link href="/contact">Contact</Link>
         </li>
+        <li className="p__opensans">
+          <Link href="/my-reservations">My Reservations</Link>
+        </li>
       </ul>
+      <UserButton />
 
-      <div className="app__navbar-login">
-        <span className="p__opensans mt-3">
+      <div className="app__navbar-login md:hidden">
+        <span className="p__opensans mt-3 md:hidden">
           <UserButton />
         </span>
 
@@ -69,6 +73,19 @@ export default function NavBar() {
               <li>
                 <Link href="/contact" onClick={() => setToggleMenu(false)}>
                   Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/booking" onClick={() => setToggleMenu(false)}>
+                  Book Table
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/my-reservations"
+                  onClick={() => setToggleMenu(false)}
+                >
+                  My Reservations
                 </Link>
               </li>
             </ul>

@@ -32,27 +32,30 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Input } from "./ui/input";
-// import { useFormState, useFormStatus } from "react-dom";
+import useStore from "@/hooks/zustand";
+import { useFormStatus } from "react-dom";
 
 const Meal = z.enum([
-  "fried_rice",
-  "jollof_rice",
+  "fried rice plus",
+  "jollof rice plus",
+  "ofada rice plus",
   "Egusi",
   "Afang",
   "Edikiakong",
   "Banga",
-  "Bitter_leaf",
+  "Bitter leaf",
   "Ewedu",
   "Ogbono",
 ]);
 const meals = [
-  { label: "fried_rice", value: "fried_rice" },
-  { label: "jollof_rice", value: "jollof_rice" },
+  { label: "fried rice plus", value: "fried rice plus" },
+  { label: "jollof rice plus", value: "jollof rice plus" },
+  { label: "ofada rice plus", value: "ofada rice plus" },
   { label: "Egusi", value: "Egusi" },
   { label: "Edikiakong", value: "Edikiakong" },
   { label: "Afang", value: "Afang" },
   { label: "Banga", value: "Banga" },
-  { label: "Bitter_leaf", value: "Bitter_leaf" },
+  { label: "Bitter leaf", value: "Bitter leaf" },
   { label: "Ogbono", value: "Ogbono" },
   { label: "Ewedu", value: "Ewedu" },
 ] as const;
@@ -79,6 +82,8 @@ const FormSchema = z.object({
 });
 
 export function ReservationForm() {
+  const createBooking = useStore((state) => state.createRes);
+  const Bookings = useStore((state) => state.booking);
   const user = useUser({ or: "redirect" });
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -91,10 +96,17 @@ export function ReservationForm() {
     },
   });
 
-  // const { pending } = useFormStatus();
+  const { pending } = useFormStatus();
+  function onSubmit(values: z.infer<typeof FormSchema>) {
+    createBooking(values);
+    console.log(values);
+  }
   return (
     <div className="form__bg ">
-      <p className="text-white text-center pt-6">Hi, {user.displayName}</p>;
+      <p className="text-white text-center pt-6">
+        Hi, {user.displayName} {Bookings.length}
+      </p>
+      ;<p className="text-white"></p>
       <h1 className=" text-center font-normal text-3xl text-white py-5">
         Make Reservation
       </h1>
@@ -102,7 +114,7 @@ export function ReservationForm() {
         <div className=" w-1/3 hidden md:block" />
         <MyForm {...form}>
           <form
-            //onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-8 w-full md:w-1/3"
           >
             <FormField
@@ -305,10 +317,9 @@ export function ReservationForm() {
                 </FormItem>
               )}
             />
-            {/* <p aria-live="polite">{state.userId}</p>
             <Button disabled={pending} type="submit">
               {pending ? "Submitting..." : "Submit"}
-            </Button> */}
+            </Button>
           </form>
         </MyForm>
         <div className=" w-1/3 hidden md:block" />
