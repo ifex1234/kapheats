@@ -26,6 +26,11 @@
   border-style: groove;
   border-radius: 0.9375rem;
   padding: 1.875rem;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+  }
 
   img {
     width: 17.5rem;

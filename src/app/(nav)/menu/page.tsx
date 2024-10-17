@@ -13,7 +13,7 @@ function Page() {
     <div className="menu__bg">
       <main className="menu_main_content ">
         {Menu.map((item) => (
-          <div className="menu_main_items" key={item.id}>
+          <div className="menu_main_items hover:shadow-custom" key={item.id}>
             <div className="menu_items ">
               <Image src={item.image} alt={String(item.mealName)} />
               <span className=" flex flex-col gap-3">
