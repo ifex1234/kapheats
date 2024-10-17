@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -59,15 +60,27 @@ const config: Config = {
       keyframes: {
         slide: {
           from: {
-            transform: "translate(100%)",
+            transform: "translateY(10%)",
           },
           to: {
-            transform: "translate(0%)",
+            transform: "translateY(0%)",
+          },
+        },
+        appear: {
+          from: {
+            opacity: "0",
+            transform: "translateY(4rems)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateY(0%)",
           },
         },
       },
+
       animation: {
         slide: "slide 750ms ease-in-out",
+        appear: "appear 750ms ease-in-out",
       },
     },
   },
